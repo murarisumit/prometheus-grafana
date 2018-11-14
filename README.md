@@ -8,7 +8,7 @@
 * `helm install --name prometheus-monitoring stable/prometheus --namespace monitoring`
 
 * Below are some of details spit out after installation
-
+```
     The Prometheus server can be accessed via port 80 on the following DNS name from within your cluster:
     prometheus-monitoring-server.monitoring.svc.cluster.local
 
@@ -34,7 +34,7 @@
     Get the PushGateway URL by running these commands in the same shell:
       export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
       kubectl --namespace monitoring port-forward $POD_NAME 9091
-
+```
 ### Set port-forwarding to see if prometheus is working fine.
 
 * `export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")`
