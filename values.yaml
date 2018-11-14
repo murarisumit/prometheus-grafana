@@ -1,0 +1,7 @@
+persistence:
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  size: 5Gi
+
+path: /var/lib/grafana/dashboards
