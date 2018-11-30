@@ -1,0 +1,27 @@
+persistence:
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  size: 5Gi
+
+plugins: "grafana-kubernetes-app"
+
+path: /var/lib/grafana/dashboards
+
+livenessProbe:
+  httpGet:
+    path: /api/health
+    port: 3000
+  initialDelaySeconds: 180
+  timeoutSeconds: 30
+  failureThreshold: 10
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      access: proxy
+      url: http://prometheus-monitoring-server.monitoring.svc.cluster.local
+      isDefault: true

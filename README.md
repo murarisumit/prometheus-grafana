@@ -1,9 +1,15 @@
-
 ### Create a namespace for monitoring:
 
 * `kubectl create ns monitoring`
 
 ### Installing prometheus
+
+All these are instruction are in `Makefile` too, but full instruction are there below too.
+
+```
+make install
+make port-foward
+```
 
 * `helm install --name prometheus-monitoring stable/prometheus --namespace monitoring`
 
@@ -46,6 +52,14 @@ For alertmanager and others see the helpful notes docs that shows on command lin
 
 * Create a file called values.yaml with content from here: [https://gist.github.com/murarisumit/172465c2dbc3383defaedca70f8b2707](https://gist.github.com/murarisumit/172465c2dbc3383defaedca70f8b2707)
 
+These instruction are there in `Makefile` too but full description below
+```
+make install
+make ls
+make port-foward
+```
+
+
 * `helm install --name grafana stable/grafana --version 1.11.6 --namespace monitoring -f values.yaml`
 
 * Below are some of details spit out after installation
@@ -75,11 +89,11 @@ export POD_NAME=$(kubectl get pods --namespace monitoring -l "app=grafana" -o js
 kubectl --namespace monitoring port-forward $POD_NAME 3000
 ```
 
+Now goto `http://locahost:3000`, enable kuberenetes plugin, then put your credentials about how you want grafana to talk to kuberentes. 
+
+
 This works for getting started with prometheus and grafana.
 
 
-
-
 Reference: 
-
 * [https://rohanc.me/monitoring-kubernetes-prometheus-grafana/](https://rohanc.me/monitoring-kubernetes-prometheus-grafana/)
